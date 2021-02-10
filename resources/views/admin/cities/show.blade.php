@@ -17,7 +17,7 @@
                             <h3 class="mb-0">Ciudades</h3>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{route('city.edit', $city->id)}}" class="btn btn-sm btn-primary">Editar usuario</a>
+                            <a href="{{route('city.edit', $city->id)}}" class="btn btn-sm btn-primary">Editar ciudad</a>
                         </div>
                     </div>
                 </div>

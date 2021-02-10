@@ -28,7 +28,8 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('admin.clients.create');
+        $cities = City::all();
+        return view('admin.clients.create', compact('cities'));
     }
 
     /**
@@ -40,7 +41,7 @@ class ClientController extends Controller
     public function store(ClientRequest $request)
     {
         Client::create($request->all());
-        return redirect()->route('clients.index');
+        return redirect()->route('client.index');
     }
 
     /**

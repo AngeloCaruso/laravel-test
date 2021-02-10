@@ -2,9 +2,9 @@
 
 @section('content')
 @include('layouts.headers.cards', [
-    'route' => 'client.index',
-    'main' => 'Clientes',
-    'action' => 'Crear'
+'route' => 'client.index',
+'main' => 'Clientes',
+'action' => 'Crear'
 ])
 
 <div class="container-fluid mt--7">
@@ -14,32 +14,46 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">Ciudades</h3>
+                            <h3 class="mb-0">Clientes</h3>
                         </div>
                     </div>
                 </div>
 
                 <div class="card-body">
-                    <form action="{{route('city.store')}}" method="POST">
+                    <form action="{{route('client.store')}}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col">
                                 <label for="">Código</label>
                                 <div class="form-group mb-0">
                                     <input type="text" name="code" class="form-control" placeholder="Código" value="{{old('code')}}">
+                                    @error('code')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
-                                @error('code')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
                             </div>
                             <div class="col">
                                 <label for="">Nombre</label>
                                 <div class="form-group mb-0">
                                     <input type="text" name="name" class="form-control" placeholder="Nombre" value="{{old('name')}}">
+                                    @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
-                                @error('name')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                            </div>
+                            <div class="col">
+                                <label for="">Ciudad</label>
+                                <div class="form-group mb-0">
+                                    <select name="cities_id" class="form-control">
+                                        <option value="" disabled>Seleccione una ciudad</option>
+                                        @foreach($cities as $city)
+                                        <option value="{{$city->id}}" {{$city->id == old('cities_id') ? 'selected' : ''}}> {{$city->name}} </option>
+                                        @endforeach
+                                    </select>
+                                    @error('cities_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="col">
                                 <label for=""></label>
